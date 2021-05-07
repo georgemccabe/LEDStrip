@@ -1,5 +1,4 @@
 #include <FastLED.h>
-#include <MIDIUSB.h>
 
 #define POWER_PIN   2
 #define LED_PIN     5
@@ -25,7 +24,10 @@ int num_shuffles = 5;
 #define Holly_Green 0x00580c
 #define Holly_Red   0xB00402
 
+// rainbow colors
 //CRGB color_list[] = {CRGB::Red, CRGB::Blue, CRGB::Green, CRGB::Yellow, CRGB::Crimson, CRGB::LawnGreen, CRGB::Orange};
+
+// xmas colors
 CRGB color_list[] = {CRGB::Grey, Holly_Red, Holly_Green, CRGB::Blue};
 
 
@@ -41,7 +43,6 @@ int previous = LOW;    // the previous reading from the input pin
 // the follow variables are long's because the time, measured in miliseconds,
 // will quickly become a bigger number than can be stored in an int.
 long time = 0;         // the last time the output pin was toggled
-//long debounce = 200;   // the debounce time, increase if the output flickers
 long debounce = 600;   // the debounce time, increase if the output flickers
 
 int current_follow = 0;
@@ -441,61 +442,10 @@ void processMidi(midiEventPacket_t rx) {
 }
 
 void loop() {
-  //listen for new MIDI messages
-  midiEventPacket_t rx = MidiUSB.read();
-  processMidi(rx);
-
-//  check_power_button();
-//  candy_cane_walk(4);
-//shuffle_loop_b();
-//xmas_sides();;
-/*
-  // spin alternating colors
-  wait_amt = 10;
-  reverse=false;
-  led_increment=2;
-  // if odd, make even
-  if(current_led % 2 == remainder) {
-    current_led++;
-  }
-  if(follow(color_list[current_color])) {
-    colorpp();
-    current_led = 1;
-    remainder = !remainder;
-  }
-*/
-/*
-  // spin colors
-  wait_amt = 10;
-  reverse=false;
-  if(follow(color_list[current_color])) {
-    colorpp();
-  }
-*/
-
-/*
-  // strobe colors
-  wait_amt = 50;
-  if(strobe(color_list[current_color])) {
-    colorpp();
-  }
-*/
-
-/*
-  // fade colors
-  wait_amt = 100;
-  fade_all(color_list[current_color]);
-*/
-
 
   // shuffle multiple loops
-//  shuffle_loop_b();
+  shuffle_loop_b();
 
-/*
-  // random sparkle
-  wait_amt = 10;
-  random_flash();
-*/
 /*
   if(current_loop == 0) {
     clear_all();
