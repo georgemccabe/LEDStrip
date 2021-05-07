@@ -1,4 +1,4 @@
-#LEDString
+# LEDString
 
 Arduino project using the FastLED library to control LED light strips.
 
